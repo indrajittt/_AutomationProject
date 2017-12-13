@@ -15,45 +15,52 @@ import generic.IAutoConst;
 public class EnterTimeTrackPage {
 	@FindBy(xpath="//div[contains(text(),'Help')]")
 	private WebElement help;
-	
+
 	@FindBy(linkText="About your actiTIME")
 	private WebElement aboutActiTIME;
-	
+
 	@FindBy(xpath="//span[starts-with(.,'actiTIME')]")
 	private WebElement productVersion;
-	
+
 	@FindBy(id="aboutPopupCloseButtonId")
 	private WebElement closeBTN;
-	
+
 	@FindBy(id="logoutLink")
 	private WebElement logoutLink;
-	
-	public EnterTimeTrackPage(WebDriver driver){
+
+	public EnterTimeTrackPage(WebDriver driver)
+	{
 		PageFactory.initElements(driver,this);
 	}
-	
-	public void clickHelp(){
+
+	public void clickHelp()
+	{
 		help.click();
 	}
-	
-	public void clickAboutActiTIME(){
+
+	public void clickAboutActiTIME()
+	{
 		aboutActiTIME.click();
 	}
-	
-	public void verifyVersion(String eVersion){
+
+	public void verifyVersion(String eVersion)
+	{
 		String aVersion=productVersion.getText();
 		Assert.assertEquals(aVersion, eVersion);
 	}
-	
-	public void clickClose(){
+
+	public void clickClose()
+	{
 		closeBTN.click();
 	}
-	
-	public void clickLogout(){
+
+	public void clickLogout()
+	{
 		logoutLink.click();
 	}
-	
-	public void verifyTitle(WebDriver driver,String eTitle){
+
+	public void verifyTitle(WebDriver driver,String eTitle)
+	{
 		String strETO=AUL.getProperty(IAutoConst.SETTING_PATH, "ETO");
 		long ETO=Long.parseLong(strETO);
 		WebDriverWait wait=new WebDriverWait(driver,ETO);
@@ -65,7 +72,7 @@ public class EnterTimeTrackPage {
 			Reporter.log("Title is NOT Matching",true);
 			Assert.fail();
 		}
-		
+
 	}
 }
 
