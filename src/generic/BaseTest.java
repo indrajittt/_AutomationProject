@@ -8,6 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 public abstract class BaseTest implements IAutoConst
@@ -21,7 +22,7 @@ public abstract class BaseTest implements IAutoConst
 	
 	@Parameters({"browser"})
 	@BeforeMethod(alwaysRun=true)
-	public void openApplication(String browser)
+	public void openApplication(@Optional("chrome") String browser)
 	{
 		if(browser.equals("chrome"))
 			driver=new ChromeDriver();

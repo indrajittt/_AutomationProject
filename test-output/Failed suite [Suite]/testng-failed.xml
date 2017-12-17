@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Failed suite [Suite]]">
+  <test name="Test(failed)(failed)">
+    <parameter name="browser" value="e"/>
+    <classes>
+      <class name="script.InvalidLogin">
+        <methods>
+          <include name="testInvalidLogin" invocation-numbers="1"/>
+          <include name="closeApplication"/>
+          <include name="openApplication"/>
+        </methods>
+      </class> <!-- script.InvalidLogin -->
+      <class name="script.ValidLogin">
+        <methods>
+          <include name="testValidLogin" invocation-numbers="1"/>
+          <include name="closeApplication"/>
+          <include name="openApplication"/>
+        </methods>
+      </class> <!-- script.ValidLogin -->
+    </classes>
+  </test> <!-- Test(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Suite]] -->

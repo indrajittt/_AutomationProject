@@ -10,11 +10,16 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.Reporter;
 
 
 
 //Automation Utility Library
-public class AUL
+public class AUL implements IAutoConst
 {
 	public static String getProperty(String path, String key)
 	{
@@ -41,6 +46,20 @@ public class AUL
 			FileUtils.copyFile(srcFile, new File(destPath));
 		} catch (IOException e)
 		{
+		}
+	}
+	
+	public static void verifyTitle(WebDriver driver, String eTitle)
+	{
+		WebDriverWait wait=new WebDriverWait(driver, Long.parseLong(getProperty(SETTING_PATH, "ETO")));
+		try{
+			wait.until(ExpectedConditions.titleIs(eTitle));
+			Reporter.log(eTitle + " page is displayed", true);
+		}
+		catch(Exception e)
+		{
+			Reporter.log(eTitle + " page is not displayed", true);
+			Assert.fail();
 		}
 	}
 }

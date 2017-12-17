@@ -10,7 +10,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
 
-public class LoginPage
+import generic.AUL;
+import generic.IAutoConst;
+
+public class LoginPage implements IAutoConst
 {
 	@FindBy(id="username")
 	private WebElement unTB;
@@ -24,7 +27,7 @@ public class LoginPage
 	@FindBy(xpath="//span[contains(.,'invalid')]")
 	private WebElement errMsg;
 
-	public void LoginPage(WebDriver driver)
+	public LoginPage(WebDriver driver)
 	{
 		PageFactory.initElements(driver, this);
 	}
@@ -46,7 +49,7 @@ public class LoginPage
 	
 	public void verifyErrorMessageIsDisplayed(WebDriver driver)				//why in a POM class
 	{
-		WebDriverWait wait=new WebDriverWait(driver, 10);
+		WebDriverWait wait=new WebDriverWait(driver, Long.parseLong(AUL.getProperty(SETTING_PATH, "ETO")));
 		try{			
 			wait.until(ExpectedConditions.visibilityOf(errMsg));
 			Reporter.log("Error message is displayed", true);
